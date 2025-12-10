@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load render_partial %}
+{% block title %}بلاگ{% endblock %}
+{% block content %}
+<div class="page-banner-area page-banner-height-2" data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}" style="background-image: url(&quot;assets/img/banner/page-banner-4.jpg&quot;);">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="page-banner-content text-center">
+                    <h4 class="breadcrumb-title">وبلاگ</h4>
+                    <div class="breadcrumb-two">
+                        <nav>
+                            <nav class="breadcrumb-trail breadcrumbs">
+                                <ul class="breadcrumb-menu">
+                                    <li class="breadcrumb-trail">
+                                    <a href="{% url 'home' %}"><span>خانه</span></a>
+                                    </li>
+                                    <li class="trail-item">
+                                    <span>وبلاگ</span>
+                                    </li>
+                                </ul>
+                            </nav> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="blog-area mt-120 mb-75">
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-7">
+            <div class="row">
+                {% if page_obj %}
+                 {% for post in page_obj %}
+                
+                <div class="col-xl-6">
+                    <div class="single-smblog mb-30">
+                        <div class="smblog-thum">
+                            <div class="blog-image w-img">
+                                
+                                <a href="{% url 'blog-details' post.id %}"><img src="{{ post.image.url }}" alt=""></a>
+                            </div>
+                            <div class="blog-tag blog-tag-2">
+                                <a href="{% url 'blog' %}">{{ post.title }}</a>
+                            </div>
+                        </div>
+                        <div class="smblog-content smblog-content-3">
+                            <h6><a href="{% url 'blog-details' post.id %}">{{ post.title | truncatewords:30 }}</a></h6>
+                            <span class="author mb-10">ارسال توسط <a href="#">{{ post.user.username }}</a></span>
+                            <p>{{ post.content | truncatewords:30 }}</p>
+                            <div class="smblog-foot pt-15">
+                                <div class="post-readmore">
+                                    <a href="{% url 'blog-details' post.id %}"> ادامه مطلب <span class="icon"></span></a>
+                                </div>
+                                <div class="post-date">
+                                    <a href="{% url 'blog-details' post.id %}">{{ post.created_at | date:"SHORT_DATE_FORMAT"}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>هیچ پستی یافت نشد.</p>
+                {% endif %}
+                </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="basic-pagination text-center pt-30 pb-30">
+                        <nav>
+                            <ul>
+                                {% if page_obj.has_previous %}
+                                <li>
+                                    <a href="?page={{ page_obj.previous_page_number }}">
+                                    <i class="fal fa-angle-double-right"></i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% for num in page_obj.paginator.page_range %}
+                                <li>
+                                    <a href="?page={{ num }}" class="{% if page_obj.number == num %}active{% endif %}">{{ num }}</a>
+                                </li>
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                <li>
+                                    <a href="?page={{ page_obj.next_page_number }}">
+                                    <i class="fal fa-angle-double-left"></i>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            </nav>
+                        </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-xl-4 col-lg-5">
+                <div class="news-sidebar pl-10">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="widget">
+                            <h6 class="sidebar-title"> جستجو</h6>
+                            <div class="n-sidebar-search">
+                                <form action="{% url 'search-blog' %}" method="get">
+                                <input name="query" type="text" placeholder="جستجو...">
+                                <button type="submit"><a ><i class="fal fa-search"></i></a></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% render_partial 'core.views.blog_left_sidebar' %}
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+ثبت نام 
+{% endblock %}
+{% block content %}
+<div class="page-banner-area page-banner-height-2" data-background="{% static 'assets/img/banner/page-banner-4.jpg' %}" style="background-image: url(&quot;assets/img/banner/page-banner-4.jpg&quot;);">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="page-banner-content text-center">
+                    <h4 class="breadcrumb-title">حساب من</h4>
+                    <div class="breadcrumb-two">
+                        <nav>
+                            <nav class="breadcrumb-trail breadcrumbs">
+                                <ul class="breadcrumb-menu">
+                                    <li class="breadcrumb-trail">
+                                    <a href="index.html"><span>خانه</span></a>
+                                    </li>
+                                    <li class="trail-item">
+                                    <span>حساب من</span>
+                                    </li>
+                                </ul>
+                            </nav> 
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="account-area mt-70 mb-70">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="basic-login">
+                            <h5>ثبت نام</h5>
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <label for="username">ایمیل یا نام کاربری  <span>*</span></label>
+                                <input id="username" name="username" type="text" placeholder="نام کاربری">
+                                <label for="email-id">آدرس ایمیل <span>*</span></label>
+                                <input id="email-id"  name="email" type="text" placeholder="آدرس ایمیل...">
+                                <label for="userpass">رمز عبور <span>*</span></label>
+                                <input id="userpass" name="password" type="password" placeholder="رمز عبور...">
+                                <div class="login-action mb-10 fix">
+                                    <p>داده های شخصی شما برای پشتیبانی از تجربه شما در سراسر این وب سایت، مدیریت دسترسی به حساب شما، و برای اهداف دیگری که در ما توضیح داده شده است، استفاده خواهد شد. <a href="#">حریم خصوصی</a>.</p>
+                                </div>
+                                <button class="tp-in-btn w-100">ثبت نام</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
