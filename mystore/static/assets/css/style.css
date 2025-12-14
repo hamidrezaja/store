@@ -219,7 +219,7 @@ input {
     common classes css start 
 ---------------------------------*/
 .w-img img {
-  width: 100%;
+  width: 80%;
 }
 
 .m-img img {
@@ -229,6 +229,24 @@ input {
 .fix {
   overflow: hidden;
 }
+.product__modal-img {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product__modal-img img {
+    max-height:250px;
+    max-width: 250px;
+    object-fit: contain;
+}
+#modalTab img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+}
+
 
 .clear {
   clear: both;

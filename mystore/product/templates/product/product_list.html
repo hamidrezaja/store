@@ -1,0 +1,281 @@
+{% extends "base.html" %}
+{% load static %}
+{% load product_tags %}
+
+{% block content %}
+<main>
+        <!-- breadcrumb__area-start -->
+        <section class="breadcrumb__area box-plr-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="breadcrumb__wrapper">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="index.html">خانه</a></li>
+                                  <li class="breadcrumb-item active" aria-current="page">فروشگاه</li>
+                                </ol>
+                              </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb__area-end -->
+
+        <!-- shop-area-start -->
+        <div class="shop-area mb-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4">
+                        {% show_product_categories  %}
+                        <div class="product-widget mb-30">
+                            <h5 class="pt-title">انتخاب برند</h5>
+                            {% show_product_brands  %}
+                        </div>
+                            {% show_special_products %}
+                    </div>
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="shop-banner mb-30">
+                            <div class="banner-image">
+                                <img class="banner-l" src="{% static 'assets/img/banner/sl-banner.jpg' %}" alt="">
+                                <img class="banner-sm" src="assets/img/banner/sl-banner-sm.png" alt="">
+                                <div class="banner-content text-center">
+                                    <p class="banner-text mb-30">عجله کن! <br> ارسال رایگان تمام سفارشات بالای 99 تومان</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-lists-top">
+                            <div class="product__filter-wrap">
+                                <div class="row align-items-center">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                        <div class="product__filter d-sm-flex align-items-center">
+                                            <div class="product__col">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                      <button class="nav-link active" id="FourCol-tab" data-bs-toggle="tab" data-bs-target="#FourCol" type="button" role="tab" aria-controls="FourCol" aria-selected="true">
+                                                        <i class="fal fa-th"></i>
+                                                      </button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                      <button class="nav-link" id="FiveCol-tab" data-bs-toggle="tab" data-bs-target="#FiveCol" type="button" role="tab" aria-controls="FiveCol" aria-selected="false">
+                                                        <i class="fal fa-list"></i>
+                                                      </button>
+                                                    </li>
+                                                  </ul>
+                                            </div>
+                                            <div class="product__result pl-60">
+                                                <p>نمایش {{ page_obj.start_index }}-{{ page_obj.end_index }} از {{ page_obj.paginator.count }} نتیجه</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                        <div class="product__filter-right d-flex align-items-center justify-content-md-end">
+
+                            </div>
+                        </div>
+ 
+                                </div>
+                        </div>
+                        </div>
+                        <div class="tab-content" id="productGridTabContent">
+                            <div class="tab-pane fade  show active" id="FourCol" role="tabpanel" aria-labelledby="FourCol-tab">
+                                <div class="tp-wrapper">
+                                    <div class="row g-0">
+                                        {% if page_obj %}
+                                        {% for product in page_obj %}
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="product__item product__item-d">
+                                                <div class="product__thumb fix">
+                                                    <div class="product-image w-img">
+                                                        <a href="{% url 'product_detail' product.id product.slug %}">
+                                                            <img src="{{ product.image.url }}" alt="{{ product.name }}"  width="100" height="100">
+                                                        </a>
+                                                    </div>
+                                                    <div class="product-action">
+                                                        <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                            <i class="fal fa-eye"></i>
+                                                            <i class="fal fa-eye"></i>
+                                                        </a>
+                                                        <a href="#" class="icon-box icon-box-1">
+                                                            <i class="fal fa-heart"></i>
+                                                            <i class="fal fa-heart"></i>
+                                                        </a>
+                                                        <a href="#" class="icon-box icon-box-1">
+                                                            <i class="fal fa-layer-group"></i>
+                                                            <i class="fal fa-layer-group"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product__content-3">
+                                                    <h6><a href="{% url 'product_detail' product.id product.slug %}">{{ product.name }}</a></h6>
+                                                    <div class="rating mb-5">
+                                                        <ul>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                        </ul>
+                                                        <span>(01 نظر)</span>
+                                                    </div>
+                                                    <div class="price mb-10">
+                                                        <span>تومان {{ product.price }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="product__add-cart-s text-center">
+                                                    <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                                                    افزودن به سبد
+                                                    </button>
+                                                    <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId{{ product.id }}">
+                                                        مشاهده سریع
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        {% else %}
+                                        <p>هیچ محصولی یافت نشد.</p>
+                                        {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tp-pagination text-center">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="basic-pagination text-center pt-30 pb-30">
+                                                    <nav>
+                                                        <ul>
+                                                            {% if page_obj.has_previous %}
+                                                            <li>
+                                                                <a href="?page={{ page_obj.previous_page_number }}">
+                                                                <i class="fal fa-angle-double-right"></i>
+                                                                </a>
+                                                            </li>
+                                                            {% endif %}
+                                                            {% for num in page_obj.paginator.page_range %}
+                                                            <li>
+                                                                <a href="?page={{ num }}" class="{% if page_obj.number == num %}active{% endif %}">{{ num }}</a>
+                                                            </li>
+                                                            {% endfor %}
+                                                            {% if page_obj.has_next %}
+                                                            <li>
+                                                                <a href="?page={{ page_obj.next_page_number }}">
+                                                                <i class="fal fa-angle-double-left"></i>
+                                                                </a>
+                                                            </li>
+                                                            {% endif %}
+                                                        </ul>
+                                                        </nav>
+                                                    </div>
+                                            </div>
+                                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- shop-area-end -->
+{% for product in page_obj %}         
+<div class="modal fade" id="productModalId{{ product.id }}" tabindex="-1" style="display: none;" aria-hidden="true">
+    
+            <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+                
+                <div class="modal-content">
+                
+                    <div class="product__modal-wrapper p-relative">
+                        <div class="product__modal-close p-absolute">
+                            <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+                        </div>
+                        <div class="product__modal-inner">
+                            <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product__modal-box">
+                                    <div class="tab-content" id="modalTabContent">
+                                        <div class="tab-pane fade active show" id="nav1" role="tabpanel" aria-labelledby="nav1-tab">
+                                            <div class="product__modal-img w-img">
+                                                <img src="{{product.image.url}}" alt="" >
+                                            </div>
+                                        </div>
+                                        </div>
+                                    <ul class="nav nav-tabs" id="modalTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="nav1-tab" data-bs-toggle="tab" data-bs-target="#nav1" type="button" role="tab" aria-controls="nav1" aria-selected="true">
+                                                <img src="{{product.image.url}}" alt="" >
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product__modal-content">
+                                    <h4><a href="product-details.html">{{product.name}}</a></h4>
+                                    <div class="product__review d-sm-flex">
+                                        <div class="rating rating__shop mb-10 mr-30">
+                                        <ul>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        </ul>
+                                        </div>
+                                        <div class="product__add-review mb-15">
+                                        <span>01 نظر</span>
+                                        </div>
+                                    </div>
+                                    <div class="product__price">
+                                        <span>ت {{ product.price }}</span>
+                                    </div>
+                                    <div class="product__modal-des mt-20 mb-15">
+                                        <ul>
+                                            {{product.detail}}
+                                        </ul>
+                                    </div>
+                                    <div class="product__stock mb-20">
+                                        <span class="mr-10">دسترسی :</span>
+                                        <span>{{product.quantity}} موجود</span>
+                                    </div>
+                                    <div class="product__modal-form">
+                                        <form action="#">
+                                        <div class="pro-quan-area d-lg-flex align-items-center">
+                                            <div class="product-quantity mr-20 mb-25">
+                                                <div class="cart-plus-minus p-relative"><input type="text" value="1"><div class="dec qtybutton">-</div><div class="inc qtybutton">+</div></div>
+                                            </div>
+                                            <div class="pro-cart-btn mb-25">
+                                                <button class="cart-btn" type="submit">افزودن به سبد</button>
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="product__stock mb-30">
+                                        <ul>
+                                            <li><a href="#">
+                                                <span class="cat mr-10">دسته بندی:</span>
+                                                {% for cat in product.category.all %}
+                                                <span>{{ cat.name }}</span></a>
+                                                {% endfor %}
+                                            </li>
+                                            <li><a href="#">
+                                                <span class="tag mr-10">برچسب:</span>
+                                                {% for tag in product.tags.all %}
+                                                <span>{{ tag.name }}</span></a>
+                                                {% endfor %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                    
+            </div>
+</div>
+{% endfor %}
+    </main>
+{% endblock %}

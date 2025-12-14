@@ -64,26 +64,10 @@
                         </div>
                         <div class="col-xl-5 col-lg-4 d-none d-lg-block">
                             <div class="header__search">
-                                <form action="#">
+                                <form action="{% url 'search' %}">
                                     <div class="header__search-box">
-                                        <input class="search-input search-input-2" type="text" placeholder="جستجوی...">
+                                        <input class="search-input search-input-2" type="text" placeholder="جستجوی..." name='searchbar'>
                                         <button class="button button-2" type="submit"><i class="far fa-search"></i></button>
-                                    </div>
-                                    <div class="header__search-cat">
-                                        <select>
-                                            <option>همه دسته بندی ها</option>
-                                            <option>محصولات پرفروش</option>
-                                            <option>پیشنهادات برتر</option>
-                                            <option>جدیدترین ها</option>
-                                            <option>تلفن و تبلت</option>
-                                            <option>الکتریک و دیجیتال</option>
-                                            <option>مد و لباس</option>
-                                            <option>طلا و جواهر</option>
-                                            <option>زیبایی و سلامت</option>
-                                            <option>صوتی</option>
-                                            <option>تی وی</option>
-                                            <option>کامپیوتر</option>
-                                        </select>
                                     </div>
                                 </form>
                             </div>
@@ -406,7 +390,7 @@
                                         </ul>
                                     </li>
                                     <li><a href="about.html">درباره ما</a></li>
-                                    <li class="has-mega"><a href="shop.html">فروشگاه <i class="far fa-angle-down"></i></a>
+                                    <li class="has-mega"><a href="{% url 'product_list' %}">فروشگاه <i class="far fa-angle-down"></i></a>
                                         <div class="mega-menu">
                                             <div class="container container-mega">
                                                 <ul>

@@ -1,0 +1,24 @@
+<div class="product-widget mb-30">
+    <h5 class="pt-title">پیشنهاد ویژه</h5>
+    <div class="product__sm mt-20">
+        <ul>
+            {% for product in special_product %}
+            <li class="product__sm-item d-flex align-items-center">
+                <div class="product__sm-thumb mr-20">
+                    <a href="{% url 'product_detail' product.id product.slug %}">
+                        <img src="{{product.image.url}}" alt="">
+                    </a>
+                </div>
+                <div class="product__sm-content">
+                    <h5 class="product__sm-title">
+                        <a href="{% url 'product_detail' product.id product.slug %}">{{product.name}}</a>
+                    </h5>
+                    <div class="product__sm-price">
+                        <span class="price">{{product.price}} تومان</span>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

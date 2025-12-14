@@ -1,0 +1,10 @@
+<div class="widget-category-list mt-20">
+    <form action="#">
+        {% for b in brands  %}
+        <div class="single-widget-category">
+            <input type="checkbox" id="brand-item-1" name="brand-item">
+            <a href="{% url 'product_brand' b.name %}"> {{b.name}} <span>( {{ b.brands.count }} )</span></a>
+        </div>
+        {% endfor %}
+    </form>
+</div>

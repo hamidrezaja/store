@@ -1,0 +1,14 @@
+{% load static %}
+
+<div class="product-widget mb-30">
+    <h5 class="pt-title">دسته بندی محصولات</h5>
+    {% for cat in categories %}
+    <div class="widget-category-list mt-20">
+        <form>
+            <a href="{% url 'product_list_by_category' cat.name %}">{{cat.name}} <span>( {{ cat.categories.count }} )</span></a>
+            <div class="single-widget-category">
+            </div>
+        </form>
+    </div>
+    {% endfor %}
+</div>
