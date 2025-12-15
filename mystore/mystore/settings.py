@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_render_partial',
+    'django_summernote',
     #my apps
     'core',
     'product.apps.ProductConfig'
@@ -126,3 +127,6 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+#summernote settings
+SUMMERNOTE_THEME = 'bs4'  # Show summernote with Bootstrap4

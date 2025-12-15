@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load render_partial %}
+{%  load core_tags%}
 {% block title %}جزئیات بلاگ{% endblock %}
 
 {% block content %}
@@ -37,13 +37,13 @@
                 <ul class="blog-meta mb-20">
                     <li><a href="blog-details.html"><i class="fal fa-eye"></i>{{ post.counter_view }} بازدید</a></li>
                     <li><a href="blog-details.html"><i class="fal fa-comments"></i> {{ comments.count }} نظر</a></li>
-                    <li><a href="blog-details.html"><i class="fal fa-calendar-alt"></i> {{ post.created_at | date:"SHORT_DATE_FORMAT"}}</a></li>
+                    <li><a href="blog-details.html"><i class="fal fa-calendar-alt"></i> {{ post.created_at | jalali_time}}</a></li>
                 </ul>
                 <div class="news-thumb mt-40">
                     <img src="{{ post.image.url }}" alt="blog" class="img-fluid">
                 </div>
                 <span>
-                <p>{{ post.content }}</p>
+                <p>{{ post.content|safe }}</p>
                 </span>
                 <div class="news-info d-sm-flex align-items-center justify-content-between mt-50 mb-50">
                     <div class="news-tag">
@@ -84,7 +84,7 @@
                                         <div class="avatar">
                                             <h6 class="avatar-name">{{ comment.user.username }}</h6>
                                         </div>
-                                        <span class="post-meta"><i class="fal fa-calendar-alt"></i> {{ comment.created_at | date:"SHORT_DATE_FORMAT" }}</span>
+                                        <span class="post-meta"><i class="fal fa-calendar-alt"></i> {{ comment.created_at | jalali_time }}</span>
                                         <p>{{ comment.comment_content }}</p>
                                         </div>
                                 </div>
@@ -119,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                    {% render_partial 'core.views.blog_left_sidebar' %}
+                    {% blog_left_side %}
 
                     <div class="col-lg-12 col-md-6">
                     <div class="col-lg-12 col-md-6">

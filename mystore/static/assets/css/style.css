@@ -280,6 +280,37 @@ input {
 .p-absolute {
   position: absolute;
 }
+.single-smblog .blog-image img{
+  width: 100%;
+  height: 220px;      /* هر عددی دوست داری */
+  object-fit: cover;  /* کراپ تمیز */
+  display: block;
+}
+.single-smblog{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.smblog-thum{ /* بخش بالایی (عکس+تگ) */
+  flex: 0 0 auto;
+}
+
+.smblog-content{
+  flex: 1;                 /* بدنه کش میاد */
+  display: flex;
+  flex-direction: column;
+}
+
+.smblog-foot{
+  margin-top: auto;        /* فوتر همیشه پایین */
+}
+.smblog-content p{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;   /* مثلا 3 خط */
+  overflow: hidden;
+}
 
 .include-bg {
   background-position: center;

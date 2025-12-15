@@ -1,11 +1,19 @@
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
+
+class BlogPostQuerySet(models.QuerySet):
+    def active(self):
+        return self.filter(is_active=True)
+    def popular_posts(self):
+        return self.active().order_by('-counter_view')
 class BlogPostManager(models.Manager):
     def get_queryset(self):
-        return super().get_queryset().order_by('-created_at')
+        return BlogPostQuerySet(self.model,using=self._db).order_by('-created_at')
+    def active(self):
+        return self.get_queryset().active()
     def popular_posts(self):
-        return self.get_queryset().order_by('-counter_view')[:5]
+        return self.get_queryset().popular_posts()
 class BlogPost(models.Model):
     objects=BlogPostManager()
     title=models.CharField(max_length=200,verbose_name="عنوان")
@@ -15,6 +23,7 @@ class BlogPost(models.Model):
     updated_at=models.DateTimeField(auto_now=True,verbose_name="تاریخ بروزرسانی")
     image=models.ImageField(upload_to='blog_images/',verbose_name="تصویر",null=True,blank=True)
     counter_view=models.PositiveIntegerField(default=0,verbose_name="تعداد بازدید")
+    is_active=models.BooleanField(default=False)
     def __str__(self):
         return self.title
     class Meta:
