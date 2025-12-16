@@ -1,0 +1,69 @@
+<section class="top-dels light-bg-s pt-30">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section__head d-flex justify-content-between mb-30">
+                            <div class="section__title section__title-2">
+                                <h5 class="st-titile-d st-titile-d-2">تخفیف های روز</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-xxl-5 row-cols-xl-3 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+                    {% for product in discount_products %}
+                    <div class="col">
+                        <div class="product__item product__item-2 b-radius-2 mb-20">
+                            <div class="product__thumb fix">
+                                <div class="product-image w-img">
+                                    <a href="product-details.html">
+                                        <img src="{{product.image.url}}" alt="product">
+                                    </a>
+                                </div>
+                                <div class="product__offer">
+                                <span class="discount">-{{product.discount_percent}}%</span>
+                                </div>
+                                <div class="product-action product-action-2">
+                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                        <i class="fal fa-eye"></i>
+                                        <i class="fal fa-eye"></i>
+                                    </a>
+                                    <a href="#" class="icon-box icon-box-1">
+                                        <i class="fal fa-heart"></i>
+                                        <i class="fal fa-heart"></i>
+                                    </a>
+                                    <a href="#" class="icon-box icon-box-1">
+                                        <i class="fal fa-layer-group"></i>
+                                        <i class="fal fa-layer-group"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product__content product__content-3">
+                                <h6><a href="product-details.html">{{product.name}}</a></h6>
+                                <div class="rating mb-5 mt-10">
+                                    <ul>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                    </ul>
+                                    <span>(01 نظر)</span>
+                                </div>
+                                <div class="price mb-20">
+                                    <span>{{product.price}}</span>
+                                </div>
+                                <div class="progress-rate">
+                                    <span>موجودی:{{ product.quantity }}</span>
+                                </div>
+                            </div>
+                            <div class="product__add-cart text-center">
+                                <button type="button" class="cart-btn-3 product-modal-sidebar-open-btn d-flex align-items-center justify-content-center w-100">
+                                افزودن به سبد
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>

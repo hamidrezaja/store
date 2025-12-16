@@ -1,0 +1,48 @@
+{% load core_tags %}
+<div class="blog-area light-bg-s pt-20 pb-30">
+            <div class="container custom-conatiner">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section__head d-flex justify-content-between mb-30">
+                            <div class="section__title section__title-2">
+                                <h5 class="st-titile">وبلاگ </h5>
+                            </div>
+                            <div class="button-wrap button-wrap-2">
+                                <a href="{% url 'blog' %}">مشاهده همه اخبار <i class="fal fa-chevron-left"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    {% for post in posts %}
+                    <div class="col-xxl-2 col-xl-3 col-lg-4 col-md-4">
+                        <div class="single-smblog mb-30">
+                            <div class="smblog-thum">
+                                <div class="blog-image w-img">
+                                    <a href="{% url 'blog-details' post.id %}"><img src="{{post.image.url}}" alt="{{post.title}}"></a>
+                                </div>
+                                <div class="blog-tag">
+                                    <a href="#">{{post.tags.first.name}}</a>
+                                </div>
+                            </div>
+                            <div class="smblog-content">
+                                <h6><a href="{% url 'blog-details' post.id %}">{{ post.title }}</a></h6>
+                                <span class="author mb-10">ارسال توسط <a href="#">{{post.user.username}}</a></span>
+                                <p>{{post.content|safe|truncatewords:30}}</p>
+                                <div class="smblog-foot pt-15">
+                                    <div class="post-readmore">
+                                        <a href="{% url 'blog-details' post.id %}"> ادامه مطلب <span class="icon"></span></a>
+                                    </div>
+                                    <div class="post-date">
+                                        <a href="#">{{post.created_at|jalali_time}}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </div>

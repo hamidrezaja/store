@@ -1,0 +1,34 @@
+{% load static %}
+<section class="categories__area light-bg-s pt-20 pb-10">
+            <div class="container custom-conatiner">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="section__head d-flex justify-content-between mb-30">
+                            <div class="section__title section__title-2">
+                                <h5 class="st-titile">دسته بندی های برتر</h5>
+                            </div>
+                            <div class="button-wrap button-wrap-2">
+                                <a href="{%url 'product_list'%}">مشاهده همه محصولات <i class="fal fa-chevron-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    {% for category in best_categores %}
+                    <div class="col-xl-2 col-lg-3 col-md-4">
+                        <div class="categories__item p-relative w-img mb-30">
+                            <div class="categories__img b-radius-2">
+                                <a href="{% url 'product_list_by_category' category.name %}"><img src="{{category.image.url}}" alt=""></a>
+                            </div>
+                            <div class="categories__content">
+                                <h6><a href="product-details.html">{{category.name}}</a></h6>
+                                <p>({{category.product_count}} محصول)</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+            </div>
+        </section>

@@ -5,14 +5,17 @@ from django.contrib.auth.models import User
 from .forms import BlogCommentForm
 from .models import BlogPost
 from django.db.models import Q
+from product.models import Product
 # Create your views here.
 
 def header(request):
     return render(request, "includes/header.html", {})
 def footer(request):
     return render(request, "includes/footer.html", {})
-def home_page(request):
-    return render(request, "core/home.html", {})
+def home_page(request,**kwargs):
+    products=Product.objects.active()
+    context={'products':products}
+    return render(request, "core/home.html", context)
 
 def login_page(request):
     if request.method == "POST":

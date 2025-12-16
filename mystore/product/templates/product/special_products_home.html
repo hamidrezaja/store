@@ -1,0 +1,128 @@
+<section class="featured light-bg-s pt-50 pb-40">
+  <div class="container 0">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="section__head d-flex justify-content-between mb-30">
+          <div class="section__title section__title-2">
+            <h5 class="st-titile">محصولات برتر</h5>
+          </div>
+          <div class="button-wrap button-wrap-2">
+            <a href="{% url 'special_products' 'all'%}">مشاهده همه محصولات <i class="fal fa-chevron-left"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <!-- ستون چپ: فقط محصول اول -->
+      <div class="col-xl-6 col-lg-12">
+        {% for product in special_product %}
+          {% if forloop.first %}
+            <div class="single-features-item single-features-item-d b-radius-2 mb-20">
+              <div class="row g-0 align-items-center">
+
+                <div class="col-md-6">
+                  <div class="features-thum">
+                    <div class="features-product-image w-img">
+                      <a href="product-details.html"><img src="{{ product.image.url }}" alt=""></a>
+                    </div>
+                    <div class="product-action product-action-2">
+                      <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                        <i class="fal fa-eye"></i>
+                        <i class="fal fa-eye"></i>
+                      </a>
+                      <a href="#" class="icon-box icon-box-1">
+                        <i class="fal fa-layer-group"></i>
+                        <i class="fal fa-layer-group"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="product__content product__content-d product__content-d-2">
+                    <h6><a href="product-details.html">{{ product.name }}</a></h6>
+                    <div class="rating mb-5">
+                      <ul class="rating-d">
+                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                        <li><a href="#"><i class="fal fa-star"></i></a></li>
+                      </ul>
+                      <span>(01 نظر)</span>
+                    </div>
+                    <div class="price d-price mb-10">
+                      <span>ت{{ product.price }}</span>
+                    </div>
+                    <div class="features-des mb-25">
+                      <ul>
+                        <li>
+                          <a href="product-details.html"><i class="fas fa-circle"></i>{{ product.detail }} .</a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="cart-option">
+                      <a href="cart.html" class="cart-btn-4 w-100 mr-10">افزودن به سبد</a>
+                      <a href="cart.html" class="transperant-btn-2"><i class="fal fa-heart"></i></a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- ستون راست: همه محصولات بعد از اول (کارت‌های کوچک) -->
+      <div class="col-xl-6 col-lg-12">
+        <div class="row">
+          {% for product in special_product %}
+            {% if not forloop.first %}
+              <div class="col-md-6">
+                <div class="single-features-item b-radius-2 mb-20">
+                  <div class="row g-0 align-items-center">
+
+                    <div class="col-6">
+                      <div class="features-thum">
+                        <div class="features-product-image w-img">
+                          <a href="product-details.html"><img src="{{ product.image.url }}" alt=""></a>
+                        </div>
+                        <div class="product__offer">
+                          <span class="discount">-{{ product.discount_percent }}%</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                      <div class="product__content product__content-d product__content-d-2">
+                        <h6><a href="product-details.html">{{ product.name }}</a></h6>
+                        <div class="rating mb-5">
+                          <ul>
+                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                          </ul>
+                          <span>(01 نظر)</span>
+                        </div>
+                        <div class="price d-price">
+                          <span>ت{{ product.price }}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

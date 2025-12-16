@@ -20,6 +20,7 @@ class ProductTag(models.Model):
 
 class ProductCategory(models.Model):
     name=models.CharField(max_length=100, verbose_name="نام دسته بندی")
+    image=models.ImageField(upload_to='products/category_images',default='default/category_default.jpg')
     is_active=models.BooleanField(default=True, verbose_name="فعال")
     def __str__(self):
         return self.name
@@ -30,7 +31,8 @@ class ProductCategory(models.Model):
 
     
 class ProductManager(models.Manager):
-    pass
+    def active(self):
+        return self.filter(is_active=True)
 
 class Product(models.Model):
     objects=ProductManager()
@@ -38,7 +40,7 @@ class Product(models.Model):
     detail=models.CharField(max_length=500,verbose_name="جزئیات محصول", null=True, blank=True)
     description=models.TextField(verbose_name="توضیحات")
     slug=models.SlugField(max_length=255, verbose_name="اسلاگ",blank=True,null=True,unique=True ,allow_unicode=True)
-    image=models.ImageField(upload_to='products/', verbose_name="تصویر محصول")
+    image=models.ImageField(upload_to='products/', verbose_name="تصویر محصول", default='default/defaultproduct.jpg')
     description_image=models.ImageField(upload_to='products/description/', verbose_name="تصویر توضیحات محصول",
                                          null=True, blank=True)
     price=models.DecimalField(max_digits=10, decimal_places=2, verbose_name="قیمت")

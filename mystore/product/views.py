@@ -8,9 +8,11 @@ from django.core.paginator import Paginator
 def product_list(request,**kwargs):
     products = Product.objects.all()
     if kwargs.get('category'):
-        products=products.filter(categories__name=kwargs.get('category'))
+        products=products.filter(category__name=kwargs.get('category'))
     if kwargs.get('brand'):
         products=products.filter(brand__name=kwargs.get('brand'))
+    if kwargs.get('special'):
+        products=products.filter(is_special=True)
     paginator = Paginator(products, 10)  
     page_number = request.GET.get('page')
     products = paginator.get_page(page_number)
